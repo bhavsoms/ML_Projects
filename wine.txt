@@ -1,0 +1,54 @@
+**1) Data Wrangling:**
+   - Imports libraries like pandas, numpy, sklearn.ensemble, sklearn.model_selection, sklearn.metrics, and matplotlib.
+   - Reads the CSV file containing wine quality data using pandas.read_csv().
+   - Drops the 'Id' column as it might not be relevant for quality prediction.
+   - Subtracts 3 from the 'quality' column to have a range of 0-5 (terrible to excellent).
+   - Checks for missing values using df.isnull().sum() and data types using df.info().
+   - Analyzes the distribution of the 'quality' label using value_counts() and plots it with a pie chart and countplot using seaborn.
+
+**2) Data Visualization:**
+   - Creates a copy of the dataframe and sorts it by quality.
+   - Adds a new 'Quality Category' column with descriptive labels for each quality level.
+   - Creates a subplot using matplotlib.subplots() to visualize the quality distribution with a pie chart and a countplot using seaborn.
+   - Creates a heatmap to visualize the correlation between all features using seaborn.
+   - Creates box plots using seaborn to compare the distribution of specific features (volatile acidity and alcohol)  across different quality categories.
+   - Creates scatter plots using seaborn to explore the relationship between specific features (fixed acidity vs citric acid, fixed acidity vs pH).
+   - Creates a bar chart to visualize the average value of each feature for each quality category.
+   - Creates a kernel density plot using seaborn to visualize the distribution of the 'density' feature.
+   - Creates a line plot using seaborn to compare the trends of 'sulphates' and 'citric acid' across quality categories.
+
+**3) Feature Importance (Random Forest):**
+   - Splits the data into features (X) and target variable (y).
+   - Splits the data further into training and testing sets using train_test_split() for model evaluation.
+   - Trains a Random Forest Classifier model with 500 trees.
+   - Predicts the quality labels for the test set using the trained model.
+   - Calculates the accuracy score using accuracy_score() to evaluate model performance.
+   - Extracts feature importances from the Random Forest model and creates a dataframe to show the relative importance of each feature for prediction.
+   - Visualizes feature importance using a bar chart.
+
+**4) Yes or No Categorization:**
+   - Creates a new binary target variable "good wine" based on a threshold (quality >= 3).
+
+**5) Modeling:**
+   - **5.1) Normalized Data:**
+      - Scales the features between 0 and 1 using MinMaxScaler.
+      - Splits the normalized data into features and target variable.
+      - Performs 10-fold cross-validation using KFold to evaluate model performance more robustly.
+      - Trains a Random Forest Classifier model and reports mean accuracy and standard deviation.
+   - **5.2) Random Forest - Tuning Model:**
+      - Tunes hyperparameters of the Random Forest model using GridSearchCV to find the best configuration for accuracy.
+      - Evaluates the performance of the tuned model using cross-validation and reports mean accuracy and standard deviation.
+   - **5.3) Decision Tree - Tuning Model:**
+      - Similar to Random Forest tuning, tunes hyperparameters of a Decision Tree Classifier model.
+      - Evaluates the performance and reports mean accuracy and standard deviation.
+   - **5.4) SVC - Model Tuning:**
+      - Trains a Support Vector Classifier (SVC) model with a linear kernel.
+      - Evaluates the performance of the SVC model using cross-validation and reports mean accuracy and standard deviation.
+   - **5.5) Model Comparison:**
+      - Compares the performance of all trained models (Random Forest, Decision Tree, SVC) by summarizing mean accuracy and standard deviation in a Pandas dataframe.
+
+**6) Increasing Accuracy - Drop Least Important Features:**
+   - Evaluates the impact of dropping features with low importance on model performance using cross-validation.
+   - Iteratively drops features with the least importance based on feature importance scores and observes the change in accuracy.
+
+This code provides a comprehensive analysis of the wine quality dataset. It explores data, trains various machine learning models, tunes hyperparameters, evaluates performance, and explores feature importance. Finally, it attempts to improve accuracy by dropping less important features. 
